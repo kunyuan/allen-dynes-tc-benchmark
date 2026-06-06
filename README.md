@@ -40,23 +40,31 @@ All cases derive from **WF-6 (243 papers)** of the Paper2ARM superconductivity
 cluster. Classifying each paper by the closed-form Tc variant it actually uses
 (best-effort, per-paper method fields):
 
-| Variant | Level | WF-6 papers | Benchmark cases (dev + hidden) |
-|---|---|---|---|
-| original McMillan (Θ_D/1.45) | **L0** | 11 | 19 (13 + 6) |
-| basic Allen-Dynes (ω_log/1.2) | **L1** | 190 | 44 (29 + 15) |
-| Allen-Dynes + f1/f2 (strong) | **L2** | 22 | 10 (7 + 3) |
-| full Eliashberg (gap equations) | — (not benchmarked) | 20 | — |
-| **total** | | **243** | **73 cases** |
+| Level | Variant | Benchmark cases (dev + hidden) |
+|---|---|---|
+| **L0** | original McMillan (Θ_D/1.45) | 9 (6 + 3) |
+| **L1** | basic Allen-Dynes (ω_log/1.2), λ ≤ 1.2 | 76 (51 + 25) |
+| **L2** | Allen-Dynes + f1/f2 (strong), λ > 1.2 | 25 (17 + 8) |
+| **total** | | **110 cases** |
 
-The benchmark uses **every** clean, sound case we could extract from WF-6 (73 in
-all): all 19 McMillan-frequency cases (L0), all 44 Allen-Dynes ω_log cases with
-λ ≤ 1.2 (L1), and all 10 with λ > 1.2 (L2). L1/L2 are split at λ = 1.2 so they are
-disjoint. Mis-paired (multi-condition) extractions were dropped via a Tc
-self-consistency check.
+Across the 243 WF-6 papers, the closed-form Tc variant splits roughly **190** basic
+Allen-Dynes / **22** strong-coupling (f1/f2) / **11** original McMillan / **20** full
+Eliashberg (best-effort per-paper classification).
 
-(±a few at the boundaries. ~150 papers *name* "McMillan", but most use it as the
-colloquial name for the Allen-Dynes form — only ~11 use the original Θ_D/1.45
-prefactor, confirmed by reproducing their reported Tc.)
+Cases are extracted by a **deep pass** over each paper's `details` *and*
+`task_instances` fields (all λ / ω_log / Θ_D / μ\* / Tc values), then a
+**self-consistent-pairing search**: a case enters the benchmark only if some
+extracted (λ, ω/Θ_D, μ\*) reproduces some reported Tc within 20% (so the tuple is
+correctly paired). Gold is the deterministic formula output. L1/L2 split at
+λ = 1.2 (disjoint).
+
+**Irreproducible cases are not discarded.** 28 papers report (λ, ω/Θ_D, μ\*) and a
+Tc that **no** closed form reproduces — these are catalogued in
+[`REPRODUCTION.md`](REPRODUCTION.md) with the cause (needs full Eliashberg /
+multi-condition mis-pair / μ\* suspect), because *failing to reproduce a reported
+result is itself a finding*. A further ~109 papers use the formula but their
+parameters are not all parseable from the ARM summary (recoverable later via
+LKM / full-text).
 
 Gold is always the **deterministic formula output**, not paper-reported experimental
 Tc. Inputs are abstract parameters only (no material identity), so Tc cannot be
