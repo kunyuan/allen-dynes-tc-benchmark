@@ -24,8 +24,8 @@ given; recall the standard Allen-Dynes expression yourself.
 
 You are given, per case (abstract parameters only — no material identity):
 
-- `lambda` — electron-phonon coupling constant (here `lambda <= 1.2`, the
-  weak-to-moderate regime where the basic uncorrected form is the right model);
+- `lambda` — electron-phonon coupling constant (these cases are papers that
+  applied the basic form; λ spans weak to strong, but none used f1/f2 corrections);
 - `omega_ln_K` — logarithmic-average phonon frequency ω_log (K);
 - `mu_star` — Coulomb pseudopotential μ*.
 
@@ -45,7 +45,7 @@ predicted Tc in Kelvin.
 
 ## Development data (`./packet/`)
 
-- `packet/dev_params.csv` — 51 development cases (same column format).
+- `packet/dev_params.csv` — 67 development cases (same column format).
 - `packet/dev_gold.csv` — their reference `Tc_K`, so you can validate your
   implementation before submitting. Reproduce these to ~3 significant figures.
 

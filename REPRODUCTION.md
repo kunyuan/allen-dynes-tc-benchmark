@@ -1,47 +1,84 @@
-# Reproduction audit — papers whose reported Tc is NOT reproducible by any closed form
+# Reproduction audit
 
-These WF-6 papers report (λ, ω/Θ_D, μ*) **and** a Tc, but no standard closed form
-(McMillan Θ_D/1.45, Allen-Dynes ω_log/1.2, or Allen-Dynes + f1/f2) reproduces the
-reported Tc from the reported parameters (within 20%). They are **not dropped** —
-they are listed here because *failing to reproduce a reported result is itself a
-finding*. Causes differ:
+Two distinct things a Tc paper can fail at — kept separate here (and **not** discarded).
 
-- **needs full Eliashberg (strong coupling)** — high λ; the closed form genuinely
-  underestimates and the paper used the full Eliashberg gap equations.
-- **params incoherent: λ too low for reported Tc** — most likely a multi-condition
-  paper (λ at one pressure/doping, Tc at another); needs per-condition splitting.
-- **formula overshoots paper Tc** — μ* or an extracted number is suspect.
-- **no closed form reproduces reported Tc** — uncategorised; review needed.
+## A. Computed Tc reproducible, but it disagrees with EXPERIMENT
 
-Total flagged: **28**.
+The paper's closed-form/computed Tc **is** reproducible from its parameters, but the
+*computed* value differs from the *measured* Tc by >30%. This is a real physics signal —
+usually the closed form is inadequate (very strong coupling needs full Eliashberg) or
+pair-breaking (magnetism/spin-fluctuations/anharmonicity) suppresses the real Tc.
 
-| paper_id | λ | ω_log (K) | Θ_D (K) | μ* | paper Tc (K) | closed-form max (K) | reason | title |
-|---|---|---|---|---|---|---|---|---|
-| `867791146489741774` | 2.0 | 500.0 |  | 0.1 | 255.0 | 87.57 | needs full Eliashberg (strong coupling) | Superconducting phase above room temperature i |
-| `813107915761123328` | 1.5 | 500.0 |  | 0.12 | 30.6 | 53.65 | needs full Eliashberg (strong coupling) | Investigation of superconductivity in compress |
-| `813214157951205376` | 1.7 | 160.0 |  | 0.13 | 27.0 | 21.56 | needs full Eliashberg (strong coupling) | Phonon-mediated superconductivity in electron- |
-| `867765649085038612` | 1.7822 | 200.0 |  | 0.12 | 8.6 | 25.14 | needs full Eliashberg (strong coupling) | First-principles calculations of phase transit |
-| `811740615149617152` | 0.61 | 789.1 |  | 0.14 | 19.0 | 12.2 | params incoherent: lambda too low for reported Tc (multi-condition mis-pair?) | Giant anharmonicity suppresses superconductivi |
-| `812481926441992193` | 0.41 | 200.0 |  | 0.12 | 1.16 | 0.59 | params incoherent: lambda too low for reported Tc (multi-condition mis-pair?) |  |
-| `867757942403760362` | 0.29 | 100.0 |  | 0.13 | 0.1 | 0.01 | params incoherent: lambda too low for reported Tc (multi-condition mis-pair?) | Electronic and lattice dynamical properties of |
-| `812123095799169025` | 1.0 | 200.0 |  | 0.1 | 8.7 | 13.93 | formula overshoots paper Tc (mu*/extraction suspect) | Ab-initio Calculations of Lattice Dynamics and |
-| `867771980533727398` | 1.0 | 200.0 |  | 0.1 | 7.5 | 13.93 | formula overshoots paper Tc (mu*/extraction suspect) | Manipulating superconductivity of $1T$-TiTe$_2 |
-| `812127705880330240` | 0.94 | 226.3 |  | 0.13 | 4.5 | 12.08 | formula overshoots paper Tc (mu*/extraction suspect) | Competition of ferromagnetism and superconduct |
-| `814692371164823552` | 0.678 | 165.53 |  | 0.1 | 3.34 | 5.32 | formula overshoots paper Tc (mu*/extraction suspect) |  |
-| `811192921058443264` | 0.7 |  | 213.0 | 0.13 | 3.1 | 4.7 | formula overshoots paper Tc (mu*/extraction suspect) |  |
-| `814721288294629376` | 0.78 | 105.5 |  | 0.1 | 2.4 | 4.69 | formula overshoots paper Tc (mu*/extraction suspect) | Theoretical examination of electron–phonon int |
-| `811940808310652928` | 1.151 |  | 177.2 | 0.135 | 0.1 | 10.73 | formula overshoots paper Tc (mu*/extraction suspect) | Screening dependence superconducting state par |
-| `812042380692684801` | 0.85 | 1023.0 |  | 0.1 | 77.0 | 57.07 | no closed form reproduces reported Tc | Electron-phonon coupling in halogen-doped carb |
-| `813087272097284096` | 1.13 | 426.0 |  | 0.1 | 51.0 | 38.48 | no closed form reproduces reported Tc | Superconductivity in FeH 5 |
-| `813184744584904705` | 0.84 | 395.0 |  | 0.12 | 28.2 | 18.83 | no closed form reproduces reported Tc | Superconductivity at 28 K in CaB 3 C 3 predict |
-| `817359063850418177` | 0.87 | 300.0 |  | 0.12 | 22.6 | 15.42 | no closed form reproduces reported Tc | Electron-phonon coupling superconductivity in  |
-| `813327028710277120` | 0.84 | 478.0 |  | 0.1 | 20.1 | 24.67 | no closed form reproduces reported Tc | High-Pressure Structures of Disilane and Their |
-| `867746645356315608` | 0.67 | 862.0 |  | 0.1 | 20.0 | 26.85 | no closed form reproduces reported Tc | Superconductivity in Diamond-like BC3 Phase: A |
-| `867765895215186065` | 1.12 | 470.0 |  | 0.3 | 15.0 | 11.09 | no closed form reproduces reported Tc | Electron-phonon interaction in the solid form  |
-| `812688058997538816` | 1.0 | 200.0 |  | 0.1 | 9.6 | 13.93 | no closed form reproduces reported Tc | Doping induced charge density wave in monolaye |
-| `867749749405515980` | 0.16 | 230.9 |  | 0.1 | 8.8 |  | no closed form reproduces reported Tc | Quasiparticle dynamics and phonon softening in |
-| `811709692383330305` | 0.83 | 200.0 |  | 0.13 | 6.8 | 8.25 | no closed form reproduces reported Tc | Superconductivity and electron-phonon coupling |
-| `811684389233623042` | 0.99 | 65.0 |  | 0.12 | 5.93 | 4.29 | no closed form reproduces reported Tc | First-principles study of electron-phonon supe |
-| `812318459089125376` | 0.43 | 1023.0 |  | 0.13 | 4.0 | 3.19 | no closed form reproduces reported Tc | Role of the Dopant in the Superconductivity of |
-| `811906093474119682` | 0.58 | 113.0 |  | 0.12 | 2.6 | 1.88 | no closed form reproduces reported Tc | Electron-phonon superconductivity in LaNiPO |
-| `813219863777509378` | 0.42 | 94.5 |  | 0.1 | 0.77 | 0.53 | no closed form reproduces reported Tc | Electron–phonon superconductivity in YIn 3 |
+25 papers:
+
+| paper_id | method | computed Tc (K) | experimental Tc (K) | computed/exp | material |
+|---|---|---|---|---|---|
+| `867761419615994028` | mcmillan | 39.3 | 0.026 | 1511.54× | beryllium-based alloys (Be-Pb, Be- |
+| `867769693774021285` | allen-dynes-basic | 32.27 | 4 | 8.07× | Field-effect hole-doped hydrogenat |
+| `812549822006427649` | allen-dynes-basic | 10.1 | 2.8 | 3.61× | Lanthanum at megabar pressures (R- |
+| `867757683732643869` | allen-dynes-basic | 17.8 | 6 | 2.97× | K2Cr3As3 (noncentrosymmetric quasi |
+| `814582504823455745` | allen-dynes-basic | 17 | 6 | 2.83× | K2Cr3As3 (noncentrosymmetric quasi |
+| `812127705880330240` | mcmillan | 12 | 4.45 | 2.7× | cubic perovskite Sc3InB (vs MgCNi3 |
+| `811188275547996162` | allen-dynes-basic | 2.3 | 1.2 | 1.92× | Titanium-oxypnictides BaTi2Pn2O (P |
+| `811607029712945153` | mcmillan | 20.4 | 11.2 | 1.82× | NbC1-xNx / NbN^x (rock-salt carbon |
+| `867756062256660659` | allen-dynes-basic | 4.23 | 2.55 | 1.66× | ThCoC2 (noncentrosymmetric, strong |
+| `814639645122887682` | allen-dynes-basic | 3.81 | 2.4 | 1.59× | body-centered-tetragonal YC2 and L |
+| `812322173833183232` | mcmillan | 11.03 | 7 | 1.58× | hcp Li at 247 kbar (high pressure) |
+| `867762315619991562` | allen-dynes-basic | 16.4 | 10.4 | 1.58× | K2Mo3As3 |
+| `867765509788008942` | mcmillan | 62 | 39.5 | 1.57× | MgB2 (sp-valent diborides; AlB2, N |
+| `811048440174739456` | allen-dynes-basic | 7.01 | 4.5 | 1.56× | bcc tantalum (Ta) |
+| `814655275444207618` | allen-dynes-basic | 2.92 | 2.15 | 1.36× | NaBi (topological metal, body-cent |
+| `814519204332961793` | allen-dynes-basic | 6.15 | 8 | 0.77× | Sb2Se3 (orthorhombic Pnma) under h |
+| `813282992469311488` | allen-dynes-basic | 5.4 | 8 | 0.68× | APt3P (A=Ca,Sr,La); Tc focus on Sr |
+| `867754418865439090` | allen-dynes-basic | 3.66 | 6.5 | 0.56× | nH-CaAlSi (1H/5H/6H stacking varia |
+| `812325968965271553` | allen-dynes-basic | 2.3 | 6 | 0.38× | 2H-NbS2 (layered transition-metal  |
+| `813030422085632000` | mcmillan | 2 | 8.5 | 0.24× | LaFeSiHx (Fe-based, single-stripe  |
+| `813272662255075331` | allen-dynes-basic | 1.1 | 8 | 0.14× | FeSe and KFe2Se2 (checkerboard AFM |
+| `813170535063093254` | allen-dynes-basic | 3.2 | 30 | 0.11× | Ba0.5K0.5BiO3 (Ba1-xKxBiO3) |
+| `811908196133240832` | allen-dynes-basic | 0.15 | 3 | 0.05× | CaSi2 (phase III corrugated trigon |
+| `811791191132602369` | allen-dynes-basic | 0.3 | 6.8 | 0.04× | BaSi2 (trigonal P-3m1, ambient pre |
+| `867749749405515980` | mcmillan | 0.08 | 8.8 | 0.01× | FeSe single crystal (ultrafast pum |
+
+## B. Could not reproduce the paper's own COMPUTED Tc
+
+Applying the method the paper reports (with its μ\*) does **not** reproduce the paper's
+own computed Tc (>15% off). Likely: the method label is approximate, the paper actually
+solved full Eliashberg, a multi-condition value was mis-paired, or a parameter is off.
+Flagged for review, not used as benchmark gold.
+
+32 papers:
+
+| paper_id | method | λ | freq (K) | μ* | formula Tc (K) | paper computed Tc (K) | material |
+|---|---|---|---|---|---|---|---|
+| `867759874547646894` | allen-dynes-f1f2 | 3.39 | 3308 | 0.089 | 943.551 | 764 | Atomic metallic hydrogen (I4_1 |
+| `867756901285233340` | mcmillan | 1.5 | 1830 | 0.1 | 172.642 | 210 | high-pressure metallic hydroge |
+| `811677132345311232` | mcmillan | 1.5 | 1830 | 0.1 | 172.642 | 210 | high-pressure metallic hydroge |
+| `812698038379216897` | allen-dynes-f1f2 | 1.952 | 1188.91 | 0.1 | 203.437 | 168 | Cerium hydrides CeH9 (F-43m) a |
+| `812024758601252865` | mcmillan | 1.19 | 1826 | 0.1 | 133.897 | 162 | Molecular metallic hydrogen, C |
+| `867763386249642555` | mcmillan | 1.43 | 608 | 0.09 | 56.443 | 68 | Hole-doped Li_xBC (layered B-C |
+| `814691620430544896` | allen-dynes-basic | 0.65 | 2170 | 0.13 | 46.083 | 62.4 | BeH2 (Cmcm and P4/nmm metallic |
+| `867765509788008942` | mcmillan | 0.835 | 700 | 0.1 | 29.557 | 62 | MgB2 (sp-valent diborides; AlB |
+| `812434237373284353` | mcmillan | 0.91 | 861 | 0.15 | 31.354 | 39.4 | MgB2 |
+| `867761419615994028` | mcmillan | 0.988 | 662 | 0.13 | 32.056 | 39.3 | beryllium-based alloys (Be-Pb, |
+| `811802880196476929` | allen-dynes-basic | 0.89 | 1203 | 0.14 | 53.974 | 37 | AlH3 cubic Pm-3n phase, 70-110 |
+| `812346987746689024` | mcmillan | 0.81 | 763.5 | 0.1 | 30.365 | 36.7 | Hole-doped B13C2 (boron icosah |
+| `867765895215186065` | mcmillan | 1.12 | 676.2 | 0.2 | 27.724 | 33 | Solid C20 fullerene (NaC22; al |
+| `812127705880330240` | mcmillan | 0.94 | 226.3 | 0.13 | 9.998 | 12 | cubic perovskite Sc3InB (vs Mg |
+| `867768706984313394` | mcmillan | 0.83 | 287 | 0.14 | 9.098 | 11 | C6Ca (Ca-intercalated graphite |
+| `867772889959498403` | mcmillan | 0.57 | 922.3 | 0.14 | 8.709 | 10.95 | Li2B2 (MgB2-type layered borid |
+| `1233736905573531652` | allen-dynes-basic | 0.5 | 653.3 | 0.07 | 11.929 | 8 | 25% hole-doped infinite-layer  |
+| `812745012499447809` | allen-dynes-basic | 0.22 | 242.6 | 0.1 | 0.001 | 7.3 | Monolayer YS (tetragonal P4/nm |
+| `867748099894805062` | mcmillan | 0.57 | 453 | 0.12 | 5.688 | 7 | Li2B2 |
+| `811999699547455489` | mcmillan | 0.8 | 146.76 | 0.1 | 5.692 | 6.89 | CaAlSi (ternary silicide, AF-l |
+| `811684389233623042` | mcmillan | 0.99 | 93.5 | 0.12 | 4.795 | 5.93 | YSn3 (cubic AuCu3 structure, P |
+| `813005060060479488` | allen-dynes-basic | 1.18 | 70.5 | 0.1 | 6.181 | 5.1 | Ultrathin Ga films (1-3 ML) on |
+| `1160655936889552901` | allen-dynes-basic | 0.38 | 958.6 | 0.1 | 2.964 | 4.7 | A2PdH2 (A=Li,Na,K,Rb,Cs); supe |
+| `812318459089125376` | mcmillan | 0.43 | 1472 | 0.135 | 3.257 | 4 | Boron-doped diamond (substitut |
+| `867753789745004576` | allen-dynes-basic | 0.658 | 600 | 0.138 | 12.122 | 4 | bulk 1T-MoS2 (under pressure 0 |
+| `812652418742353921` | allen-dynes-basic | 0.43 | 942 | 0.1 | 5.83 | 3.43 | AlB2 and MgB2 (comparative fir |
+| `817398434037235713` | allen-dynes-basic | 0.67 | 86.6 | 0.1 | 2.698 | 3.3 | Bi4I4 high-pressure phases (ep |
+| `814553717972926464` | mcmillan | 0.54 | 143 | 0.1 | 1.918 | 2.4 | Mo3Sb7 (cubic intermetallic) |
+| `867747199868470067` | allen-dynes-basic | 0.37 | 280 | 0.1 | 0.73 | 1 | OsN2 (marcasite-like Pnnm), N- |
+| `813060109180600320` | allen-dynes-basic | 0.41 | 193 | 0.08 | 1.412 | 0.76 | LaPtBi (half-Heusler, cubic Mg |
+| `811908196133240832` | allen-dynes-basic | 0.41 | 280 | 0.1 | 1.349 | 0.15 | CaSi2 (phase III corrugated tr |
+| `814700620282855425` | allen-dynes-basic | 0.17 | 459.25 | 0.14 | 0.0 | 0.01 | HfB2 |

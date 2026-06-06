@@ -11,8 +11,8 @@ level tests a distinct closed-form **subroutine / variant** of the Tc computatio
 | Task | Subroutine / variant tested | Inputs | Cases | Gold |
 |---|---|---|---|---|
 | **L0** `tc-allendynes-L0-mcmillan` | the **original McMillan (1968)** form (Θ_D/**1.45** prefactor, *not* Allen-Dynes ω_log/1.2) | λ, **Θ_D**, μ\* | weak-moderate | McMillan output |
-| **L1** `tc-allendynes-L1-basic` | basic **Allen-Dynes (1975)** exponential (ω_log/**1.2** prefactor) | λ, ω_log, μ\* | weak-moderate, λ ≤ 1.2 | basic Allen-Dynes output |
-| **L2** `tc-allendynes-L2-strongcoupling` | strong-coupling **f1** + shape **f2** corrections | λ, ω_log, **ω̄₂**, μ\* | strong, λ > 1.2 | full Allen-Dynes (f1·f2) output |
+| **L1** `tc-allendynes-L1-basic` | basic **Allen-Dynes (1975)** exponential (ω_log/**1.2** prefactor) | λ, ω_log, μ\* | papers that used the basic form | basic Allen-Dynes output |
+| **L2** `tc-allendynes-L2-strongcoupling` | strong-coupling **f1** + shape **f2** corrections | λ, ω_log, **ω̄₂**, μ\* | papers that used f1/f2 | full Allen-Dynes (f1·f2) output |
 
 Ordered by the physics lineage: McMillan (1968) → Allen-Dynes basic (1975) →
 Allen-Dynes + strong-coupling corrections.
@@ -37,43 +37,43 @@ Allen-Dynes + strong-coupling corrections.
 ## Data & provenance
 
 All cases derive from **WF-6 (243 papers)** of the Paper2ARM superconductivity
-cluster. Classifying each paper by the closed-form Tc variant it actually uses
-(best-effort, per-paper method fields):
+cluster. The method and numbers for **every paper were read directly from its LKM
+knowledge-graph nodes** (verbatim claim/conclusion text) by **21 parallel
+subagents** — not regex over a summary. That read distinguishes the paper's
+**computed** Tc from its **experimental** Tc, recovers the paper's **own μ\***, and
+breaks out multi-condition data.
 
-| Level | Variant | Benchmark cases (dev + hidden) |
+By the formula each paper actually used (LKM-grounded): **172** basic Allen-Dynes /
+**36** original McMillan / **20** Allen-Dynes + f1/f2 / **4** full Eliashberg / 11
+not found in LKM.
+
+A case enters the benchmark only if that formula, **with the paper's own μ\***,
+reproduces the paper's **computed** Tc (within 15%) — so the gold is a faithful,
+reproducible deterministic value. Grouped by the formula the paper used:
+
+| Level | Formula the paper used | Benchmark cases (dev + hidden) |
 |---|---|---|
-| **L0** | original McMillan (Θ_D/1.45) | 9 (6 + 3) |
-| **L1** | basic Allen-Dynes (ω_log/1.2), λ ≤ 1.2 | 76 (51 + 25) |
-| **L2** | Allen-Dynes + f1/f2 (strong), λ > 1.2 | 25 (17 + 8) |
-| **total** | | **110 cases** |
+| **L0** | McMillan (Θ_D/1.45) | 7 (5 + 2) |
+| **L1** | basic Allen-Dynes (ω_log/1.2) | 100 (67 + 33) |
+| **L2** | Allen-Dynes + f1/f2 | 8 (5 + 3) |
+| **total** | | **115 cases** |
 
-Across the 243 WF-6 papers, the closed-form Tc variant splits roughly **190** basic
-Allen-Dynes / **22** strong-coupling (f1/f2) / **11** original McMillan / **20** full
-Eliashberg (best-effort per-paper classification).
+Inputs are abstract parameters only (no material identity), so Tc cannot be recalled
+from a known compound. L2's ω̄₂ = ⟨ω²⟩^(1/2) is the paper's value where reported, else
+an assigned representative second moment.
 
-Cases are extracted by a **deep pass** over each paper's `details` *and*
-`task_instances` fields (all λ / ω_log / Θ_D / μ\* / Tc values), then a
-**self-consistent-pairing search**: a case enters the benchmark only if some
-extracted (λ, ω/Θ_D, μ\*) reproduces some reported Tc within 20% (so the tuple is
-correctly paired). Gold is the deterministic formula output. L1/L2 split at
-λ = 1.2 (disjoint).
-
-**Irreproducible cases are not discarded.** 28 papers report (λ, ω/Θ_D, μ\*) and a
-Tc that **no** closed form reproduces — these are catalogued in
-[`REPRODUCTION.md`](REPRODUCTION.md) with the cause (needs full Eliashberg /
-multi-condition mis-pair / μ\* suspect), because *failing to reproduce a reported
-result is itself a finding*. A further ~109 papers use the formula but their
-parameters are not all parseable from the ARM summary (recoverable later via
-LKM / full-text).
-
-Gold is always the **deterministic formula output**, not paper-reported experimental
-Tc. Inputs are abstract parameters only (no material identity), so Tc cannot be
-recalled from a known compound. L2's ω̄₂ = ⟨ω²⟩^(1/2) is an assigned representative
-second moment (papers rarely report it).
+**Two kinds of failure are catalogued — not discarded — in
+[`REPRODUCTION.md`](REPRODUCTION.md):** *(A)* **25 papers whose computed Tc is
+reproducible but disagrees with experiment** (the closed form is inadequate — very
+strong coupling needs full Eliashberg — or pair-breaking suppresses the real Tc);
+*(B)* **32 papers whose own computed Tc we could not reproduce** with the reported
+method + μ\* (likely an approximate method label, a full-Eliashberg paper, or a
+mis-paired multi-condition value). *Failing to reproduce a reported result is itself
+a finding.*
 
 ### Per-case sources
 
-The source `paper_id` for **every** case — all 73 across L0/L1/L2, with the
+The source `paper_id` for **every** case — all 115 across L0/L1/L2, with the
 dev/hidden split and parameters — is recorded in [`SOURCES.md`](SOURCES.md). Of the
 19 L0 cases, only **3** (`k07`, `k15`, `k16`) are papers whose *own* reported Tc is
 reproduced by McMillan; the rest report a Debye temperature but used a different

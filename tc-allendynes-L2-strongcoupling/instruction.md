@@ -23,8 +23,8 @@ standard Allen-Dynes (1975) corrections and their coefficients yourself.
 
 You are given, per case (abstract parameters only — no material identity):
 
-- `lambda` — electron-phonon coupling constant (here `lambda > 1.2`, so the f1, f2
-  factors are NOT negligible: the basic uncorrected formula is ~7-30% low);
+- `lambda` — electron-phonon coupling constant (these papers applied the f1/f2
+  strong-coupling corrections; the basic uncorrected formula is too low here);
 - `omega_ln_K` — logarithmic-average phonon frequency ω_log (K);
 - `omega2_K` — the second-moment frequency ω̄₂ = ⟨ω²⟩^(1/2) (K), needed by f2;
 - `mu_star` — Coulomb pseudopotential μ*.
@@ -43,7 +43,7 @@ Columns: `id,Tc_K` — exactly one row per input `id`, predicted Tc in Kelvin.
 
 ## Development data (`./packet/`)
 
-- `packet/dev_params.csv` — 17 development cases.
+- `packet/dev_params.csv` — 5 development cases.
 - `packet/dev_gold.csv` — their reference `Tc_K` (full Allen-Dynes output), to
   validate your implementation. Reproduce to ~3 significant figures.
 
