@@ -43,13 +43,28 @@ subagents** — not regex over a summary. That read distinguishes the paper's
 **computed** Tc from its **experimental** Tc, recovers the paper's **own μ\***, and
 breaks out multi-condition data.
 
-By the formula each paper actually used (LKM-grounded): **172** basic Allen-Dynes /
-**36** original McMillan / **20** Allen-Dynes + f1/f2 / **4** full Eliashberg / 11
-not found in LKM.
+A case enters the benchmark only if the formula the paper used, **with the paper's
+own μ\***, reproduces the paper's **computed** Tc (within 15%). The funnel, layer by
+layer:
 
-A case enters the benchmark only if that formula, **with the paper's own μ\***,
-reproduces the paper's **computed** Tc (within 15%) — so the gold is a faithful,
-reproducible deterministic value. Grouped by the formula the paper used:
+```
+243  WF-6 papers (data groups)
+├─ 232  found in LKM                         (11 not found in LKM)
+├─ 228  used a closed-form method             (+ 4 full Eliashberg, + 11 no method)
+└─ 147  had method + λ + ω_log/Θ_D + μ*   →  reproduction check attempted
+        ├─ 115  formula reproduces the paper's COMPUTED Tc (≤15%)   →  BENCHMARK
+        │        = L0 McMillan 7 + L1 basic 100 + L2 f1f2 8
+        │        (101 verified against a computed Tc; 14 had none to check)
+        └─  32  formula does NOT reproduce it                       →  REPRODUCTION.md §B
+   (96 unusable as closed-form cases: 11 not-in-LKM + 4 Eliashberg + 11 no-method + ~70 missing a param)
+
+independent axis — theory vs experiment:
+ 86  papers report BOTH a computed and an experimental Tc
+ ├─ 61  computed ≈ experiment
+ └─ 25  computed ≠ experiment (>30% apart)                          →  REPRODUCTION.md §A
+```
+
+Benchmark cases, by the formula the paper used (dev + hidden):
 
 | Level | Formula the paper used | Benchmark cases (dev + hidden) |
 |---|---|---|
