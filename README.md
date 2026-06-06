@@ -59,9 +59,9 @@ layer by layer:
    (papers with no closed-form method / missing a param are not counted above)
 
 independent axis — theory vs experiment:
- 86  papers report BOTH a computed and an experimental Tc
+ 85  papers report BOTH a computed and an experimental Tc
  ├─ 61  computed ≈ experiment
- └─ 25  computed ≠ experiment (>30% apart)                    →  REPRODUCTION.md §A
+ └─ 24  computed ≠ experiment (>30% apart)                    →  REPRODUCTION.md §A
 ```
 
 Benchmark cases, by the formula the paper used (dev + hidden):
@@ -78,7 +78,7 @@ from a known compound. L2's ω̄₂ = ⟨ω²⟩^(1/2) is the paper's value wher
 an assigned representative second moment.
 
 **Two kinds of failure are catalogued — not discarded — in
-[`REPRODUCTION.md`](REPRODUCTION.md):** *(A)* **25 papers whose computed Tc is
+[`REPRODUCTION.md`](REPRODUCTION.md):** *(A)* **24 papers whose computed Tc is
 reproducible but disagrees with experiment** (the closed form is inadequate — very
 strong coupling needs full Eliashberg — or pair-breaking suppresses the real Tc);
 *(B)* **65 per-condition data points whose computed Tc we could not reproduce** with
@@ -89,11 +89,10 @@ reproduce a reported result is itself a finding.*
 ### Per-case sources
 
 The source `paper_id` for **every** case — all 268 across L0/L1/L2, with the
-condition label, dev/hidden split and parameters — is recorded in [`SOURCES.md`](SOURCES.md). Of the
-19 L0 cases, only **3** (`k07`, `k15`, `k16`) are papers whose *own* reported Tc is
-reproduced by McMillan; the rest report a Debye temperature but used a different
-final form — so the tuples are physically realistic while the **task** is defined by
-the McMillan gold.
+condition label, dev/hidden split and parameters — is recorded in
+[`SOURCES.md`](SOURCES.md). Each L0 case is a paper that used the original McMillan
+Θ_D/1.45 form and whose McMillan Tc reproduces its computed value; each L1/L2 case
+likewise reproduces its paper's computed Tc with the matching Allen-Dynes form.
 
 ## Layout (standard Harbor, per level)
 

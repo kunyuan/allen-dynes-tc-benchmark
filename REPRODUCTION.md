@@ -8,11 +8,10 @@ The computed Tc is reproducible from the paper's parameters, but the *computed* 
 differs from the *measured* Tc by >30% — the closed form is inadequate (strong coupling
 needs full Eliashberg) or pair-breaking suppresses the real Tc.
 
-25 papers:
+24 papers:
 
 | paper_id | method | computed Tc (K) | experimental Tc (K) | computed/exp | material |
 |---|---|---|---|---|---|
-| `867761419615994028` | mcmillan | 39.3 | 0.026 | 1511.54× | beryllium-based alloys (Be-Pb, Be- |
 | `867769693774021285` | allen-dynes-basic | 32.27 | 4 | 8.07× | Field-effect hole-doped hydrogenat |
 | `812549822006427649` | allen-dynes-basic | 10.1 | 2.8 | 3.61× | Lanthanum at megabar pressures (R- |
 | `867757683732643869` | allen-dynes-basic | 17.8 | 6 | 2.97× | K2Cr3As3 (noncentrosymmetric quasi |
