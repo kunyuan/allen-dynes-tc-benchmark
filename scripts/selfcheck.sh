@@ -20,11 +20,11 @@ expect() {  # expect <wanted-exit> <label> <cmd...>
   fi
 }
 
+L0=tc-allendynes-L0-mcmillan
 L1=tc-allendynes-L1-basic
 L2=tc-allendynes-L2-strongcoupling
-L3=tc-allendynes-L3-mcmillan
 
-for L in "$L1" "$L2" "$L3"; do
+for L in "$L0" "$L1" "$L2"; do
   echo "== $L =="
   python3 "$L/solution/run_tc.py" --params "$L/tests/hidden/params.csv" --out "$tmp/h.csv"
   expect 0 "oracle on HIDDEN -> PASS" \
@@ -40,7 +40,7 @@ python3 "$L1/solution/run_tc.py" --params "$L2/tests/hidden/params.csv" --out "$
 expect 1 "L1 basic solver on L2 hidden -> FAIL" \
   python3 "$L2/tests/score.py" --pred "$tmp/x.csv" --gold "$L2/tests/gold/gold.csv" --json "$tmp/r.json"
 # Using the Allen-Dynes prefactor (theta_D/1.2) on the McMillan level must fail (~21% high)
-python3 - "$L3/tests/hidden/params.csv" "$tmp/ad.csv" <<'PY'
+python3 - "$L0/tests/hidden/params.csv" "$tmp/ad.csv" <<'PY'
 import csv, math, sys
 src, out = sys.argv[1], sys.argv[2]
 rows = []
@@ -50,8 +50,8 @@ for r in csv.DictReader(open(src)):
     rows.append({"id": r["id"], "Tc_K": f"{tc:.6g}"})
 w = csv.DictWriter(open(out, "w", newline=""), fieldnames=["id", "Tc_K"]); w.writeheader(); w.writerows(rows)
 PY
-expect 1 "Allen-Dynes prefactor on L3 McMillan -> FAIL" \
-  python3 "$L3/tests/score.py" --pred "$tmp/ad.csv" --gold "$L3/tests/gold/gold.csv" --json "$tmp/r.json"
+expect 1 "Allen-Dynes prefactor on L0 McMillan -> FAIL" \
+  python3 "$L0/tests/score.py" --pred "$tmp/ad.csv" --gold "$L0/tests/gold/gold.csv" --json "$tmp/r.json"
 
 echo "----------------------------------------"
 if [ "$rc" -eq 0 ]; then echo "ALL CHECKS PASSED"; else echo "SELF-CHECK FAILED"; fi

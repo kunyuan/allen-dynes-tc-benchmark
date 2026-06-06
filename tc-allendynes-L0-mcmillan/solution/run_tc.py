@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Oracle (L3): the ORIGINAL McMillan (1968) Tc formula.
+"""Oracle (L0): the ORIGINAL McMillan (1968) Tc formula.
 
     Tc = (theta_D / 1.45) * exp[ -1.04 (1 + lambda)
                                  / ( lambda - mu* (1 + 0.62 lambda) ) ]

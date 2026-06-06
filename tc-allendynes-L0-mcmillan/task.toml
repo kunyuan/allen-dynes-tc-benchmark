@@ -1,11 +1,11 @@
 version = "1.0"
 
 [metadata]
-author_name = "ARM Tc-Bench (WF-6 / sub-family 6a) — L3"
+author_name = "ARM Tc-Bench (WF-6 / sub-family 6a) — L0"
 author_email = "noreply@example.com"
 difficulty_explanation = "Predict Tc with the ORIGINAL McMillan (1968) formula (Debye-temperature prefactor theta_D/1.45), NOT the Allen-Dynes (1975) modification (omega_log/1.2). The formula is not given; the agent must recall McMillan specifically and distinguish it from Allen-Dynes. Inputs use theta_D (Debye temperature). An Allen-Dynes (/1.2) implementation overestimates by ~21% and fails — so this is a formula-discrimination test. Pure closed-form; held-out cases."
 category = "scientific-computing"
-tags = ["physics", "superconductivity", "mcmillan", "allen-dynes", "debye-temperature", "closed-form", "python", "wf-6", "6a", "level-3"]
+tags = ["physics", "superconductivity", "mcmillan", "allen-dynes", "debye-temperature", "closed-form", "python", "wf-6", "6a", "level-0"]
 
 [verifier]
 timeout_sec = 120.0

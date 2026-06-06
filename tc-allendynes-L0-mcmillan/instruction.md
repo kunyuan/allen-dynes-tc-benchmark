@@ -13,7 +13,7 @@ per-case answers — the graded cases differ from the development set.
 
 ---
 
-# Level 3 — the original McMillan Tc formula
+# Level 0 — the original McMillan Tc formula
 
 Predict the superconducting critical temperature `Tc` using the **original
 McMillan (1968) formula**, which uses the **Debye temperature** with the
