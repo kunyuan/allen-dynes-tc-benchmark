@@ -1,0 +1,17 @@
+version = "1.0"
+
+[metadata]
+author_name = "ARM Tc-Bench (WF-6 / sub-family 6a) — L2"
+author_email = "noreply@example.com"
+difficulty_explanation = "Predict the superconducting Tc for STRONG-COUPLING materials using the FULL Allen-Dynes formula, including the strong-coupling (f1) and spectral-shape (f2) correction factors. The formula is NOT given — the agent must know/recall the Allen-Dynes corrections and their coefficients. Inputs add the second-moment frequency omega2 = <omega^2>^(1/2). A basic-formula-only implementation (the L1 answer) is ~7-27% off here and fails. Pure closed-form; tests knowledge + implementation of the f1,f2 subroutine + generalization to concealed materials."
+category = "scientific-computing"
+tags = ["physics", "superconductivity", "allen-dynes", "strong-coupling", "f1-f2", "closed-form", "python", "wf-6", "6a", "level-2"]
+
+[verifier]
+timeout_sec = 120.0
+
+[agent]
+timeout_sec = 1800.0
+
+[environment]
+build_timeout_sec = 600.0

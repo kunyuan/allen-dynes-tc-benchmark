@@ -1,0 +1,19 @@
+version = "1.0"
+
+[metadata]
+author_name = "ARM Tc-Bench (WF-6 / sub-family 6a) — L1"
+author_email = "noreply@example.com"
+difficulty_explanation = "Predict the superconducting Tc from (lambda, omega_ln, mu*) using the basic McMillan/Allen-Dynes closed form. The formula is NOT given — the agent must recall the standard Allen-Dynes expression and implement it as a generic run_tc.py, then reproduce held-out gold on concealed materials it never saw. Pure closed-form (no DFT/HPC); weak-to-moderate coupling (lambda <= 1.5), no strong-coupling f-factors. Tests knowledge + implementation + generalization, with held-out materials so per-item answers cannot be hardcoded."
+category = "scientific-computing"
+tags = ["physics", "superconductivity", "allen-dynes", "mcmillan", "closed-form", "python", "wf-6", "6a", "level-1"]
+
+# Pure-Python closed-form on 4 hidden materials: sub-second.
+[verifier]
+timeout_sec = 120.0
+
+[agent]
+timeout_sec = 1800.0
+
+# Tiny Python image; no Julia/DFTK/artifacts.
+[environment]
+build_timeout_sec = 600.0
