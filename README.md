@@ -11,8 +11,8 @@ level tests a distinct closed-form **subroutine / variant** of the Tc computatio
 | Task | Subroutine / variant tested | Inputs | Cases | Gold |
 |---|---|---|---|---|
 | **L0** `tc-allendynes-L0-mcmillan` | the **original McMillan (1968)** form (Θ_D/**1.45** prefactor, *not* Allen-Dynes ω_log/1.2) | λ, **Θ_D**, μ\* | weak-moderate | McMillan output |
-| **L1** `tc-allendynes-L1-basic` | basic **Allen-Dynes (1975)** exponential (ω_log/**1.2** prefactor) | λ, ω_log, μ\* | weak-moderate, λ ≤ 1.5 | basic Allen-Dynes output |
-| **L2** `tc-allendynes-L2-strongcoupling` | strong-coupling **f1** + shape **f2** corrections | λ, ω_log, **ω̄₂**, μ\* | strong, λ ≥ 1 | full Allen-Dynes (f1·f2) output |
+| **L1** `tc-allendynes-L1-basic` | basic **Allen-Dynes (1975)** exponential (ω_log/**1.2** prefactor) | λ, ω_log, μ\* | weak-moderate, λ ≤ 1.2 | basic Allen-Dynes output |
+| **L2** `tc-allendynes-L2-strongcoupling` | strong-coupling **f1** + shape **f2** corrections | λ, ω_log, **ω̄₂**, μ\* | strong, λ > 1.2 | full Allen-Dynes (f1·f2) output |
 
 Ordered by the physics lineage: McMillan (1968) → Allen-Dynes basic (1975) →
 Allen-Dynes + strong-coupling corrections.
@@ -43,10 +43,16 @@ cluster. Classifying each paper by the closed-form Tc variant it actually uses
 | Variant | Level | WF-6 papers | Benchmark cases (dev + hidden) |
 |---|---|---|---|
 | original McMillan (Θ_D/1.45) | **L0** | 11 | 19 (13 + 6) |
-| basic Allen-Dynes (ω_log/1.2) | **L1** | 190 | 12 (8 + 4) |
-| Allen-Dynes + f1/f2 (strong) | **L2** | 22 | 8 (5 + 3) |
+| basic Allen-Dynes (ω_log/1.2) | **L1** | 190 | 44 (29 + 15) |
+| Allen-Dynes + f1/f2 (strong) | **L2** | 22 | 10 (7 + 3) |
 | full Eliashberg (gap equations) | — (not benchmarked) | 20 | — |
-| **total** | | **243** | |
+| **total** | | **243** | **73 cases** |
+
+The benchmark uses **every** clean, sound case we could extract from WF-6 (73 in
+all): all 19 McMillan-frequency cases (L0), all 44 Allen-Dynes ω_log cases with
+λ ≤ 1.2 (L1), and all 10 with λ > 1.2 (L2). L1/L2 are split at λ = 1.2 so they are
+disjoint. Mis-paired (multi-condition) extractions were dropped via a Tc
+self-consistency check.
 
 (±a few at the boundaries. ~150 papers *name* "McMillan", but most use it as the
 colloquial name for the Allen-Dynes form — only ~11 use the original Θ_D/1.45
@@ -57,36 +63,14 @@ Tc. Inputs are abstract parameters only (no material identity), so Tc cannot be
 recalled from a known compound. L2's ω̄₂ = ⟨ω²⟩^(1/2) is an assigned representative
 second moment (papers rarely report it).
 
-### L0 (McMillan) case sources
+### Per-case sources
 
-The 19 L0 cases draw their (λ, Θ_D, μ\*) from WF-6 papers reporting a Debye
-temperature; the gold is the McMillan Θ_D/1.45 output for each. Of these, only
-**3** (`k07`, `k15`, `k16`) are papers whose *own* reported Tc is reproduced by
-McMillan — the rest report a Debye temperature but used a different final form, so
-the tuples are physically realistic while the **task** is defined by the McMillan
-gold.
-
-| case | split | source paper_id | λ | Θ_D (K) | μ* |
-|---|---|---|---|---|---|
-| `k01` | dev | `867771259889386077` | 0.38 | 260.4 | 0.14 |
-| `k02` | dev | `812595503937093633` | 0.41 | 180.0 | 0.12 |
-| `k03` | hidden | `812454340861100036` | 0.74 | 60.0 | 0.1 |
-| `k04` | dev | `812318459089125376` | 0.43 | 1023.0 | 0.13 |
-| `k05` | dev | `811978101436186627` | 0.6 | 248.0 | 0.13 |
-| `k06` | hidden | `811684389233623042` | 0.99 | 65.0 | 0.12 |
-| `k07` | dev | `867764510792876439` | 0.842 | 127.7 | 0.13 |
-| `k08` | dev | `811192921058443264` | 0.7 | 213.0 | 0.13 |
-| `k09` | hidden | `867748099894805062` | 0.57 | 452.6 | 0.12 |
-| `k10` | dev | `811999699547455489` | 1.23 | 107.0 | 0.16 |
-| `k11` | dev | `867765895215186065` | 1.12 | 470.0 | 0.3 |
-| `k12` | hidden | `812125933258407937` | 0.83 | 286.6 | 0.14 |
-| `k13` | dev | `812050324461191168` | 0.83 | 290.1 | 0.14 |
-| `k14` | dev | `811607029712945153` | 0.682 | 345.0 | 0.1 |
-| `k15` | hidden | `812322173833183232` | 0.806 | 265.0 | 0.1 |
-| `k16` | dev | `867747957653373759` | 0.85 | 260.0 | 0.1 |
-| `k17` | dev | `812346987746689024` | 0.81 | 763.5 | 0.1 |
-| `k18` | hidden | `812276374067740672` | 0.87 | 540.0 | 0.05 |
-| `k19` | dev | `812042380692684801` | 0.85 | 1023.0 | 0.1 |
+The source `paper_id` for **every** case — all 73 across L0/L1/L2, with the
+dev/hidden split and parameters — is recorded in [`SOURCES.md`](SOURCES.md). Of the
+19 L0 cases, only **3** (`k07`, `k15`, `k16`) are papers whose *own* reported Tc is
+reproduced by McMillan; the rest report a Debye temperature but used a different
+final form — so the tuples are physically realistic while the **task** is defined by
+the McMillan gold.
 
 ## Layout (standard Harbor, per level)
 
