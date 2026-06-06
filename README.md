@@ -1,4 +1,6 @@
-# tc-allendynes-bench — Allen-Dynes Tc Harbor benchmark
+# allen-dynes-tc-benchmark — Allen-Dynes Tc Harbor benchmark
+
+[![oracle-selfcheck](https://github.com/kunyuan/allen-dynes-tc-benchmark/actions/workflows/ci.yml/badge.svg)](https://github.com/kunyuan/allen-dynes-tc-benchmark/actions/workflows/ci.yml)
 
 Two [Harbor](https://github.com/harbor-framework/harbor) tasks derived from
 **WF-6 (McMillan–Allen-Dynes Tc estimation), sub-family 6a** of the Paper2ARM
