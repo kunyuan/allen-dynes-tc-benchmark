@@ -45,7 +45,7 @@ predicted Tc in Kelvin.
 
 ## Development data (`./packet/`)
 
-- `packet/dev_params.csv` — 67 development cases (same column format).
+- `packet/dev_params.csv` — 157 development cases (same column format).
 - `packet/dev_gold.csv` — their reference `Tc_K`, so you can validate your
   implementation before submitting. Reproduce these to ~3 significant figures.
 

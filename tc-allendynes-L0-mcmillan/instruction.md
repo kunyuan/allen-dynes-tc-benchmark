@@ -44,7 +44,7 @@ Columns: `id,Tc_K` — exactly one row per input `id`, predicted Tc in Kelvin.
 
 ## Development data (`./packet/`)
 
-- `packet/dev_params.csv` — 5 development cases.
+- `packet/dev_params.csv` — 9 development cases.
 - `packet/dev_gold.csv` — their reference `Tc_K` (McMillan output), to validate
   your implementation. Reproduce to ~3 significant figures.
 

@@ -38,40 +38,40 @@ Allen-Dynes + strong-coupling corrections.
 
 All cases derive from **WF-6 (243 papers)** of the Paper2ARM superconductivity
 cluster. The method and numbers for **every paper were read directly from its LKM
-knowledge-graph nodes** (verbatim claim/conclusion text) by **21 parallel
-subagents** — not regex over a summary. That read distinguishes the paper's
-**computed** Tc from its **experimental** Tc, recovers the paper's **own μ\***, and
-breaks out multi-condition data.
+knowledge-graph nodes** (verbatim claim/conclusion text) by **parallel subagents**
+— not regex over a summary. That read distinguishes each paper's **computed** Tc
+from its **experimental** Tc, recovers the paper's **own μ\***, and — for the 183
+multi-condition papers — **splits each pressure / doping / SOC / phase into its own
+self-consistent data point** (a second subagent pass).
 
-A case enters the benchmark only if the formula the paper used, **with the paper's
-own μ\***, reproduces the paper's **computed** Tc (within 15%). The funnel, layer by
-layer:
+A data point enters the benchmark only if the formula the paper used, **with the
+paper's own μ\***, reproduces that point's **computed** Tc (within 15%). The funnel,
+layer by layer:
 
 ```
-243  WF-6 papers (data groups)
-├─ 232  found in LKM                         (11 not found in LKM)
-├─ 228  used a closed-form method             (+ 4 full Eliashberg, + 11 no method)
-└─ 147  had method + λ + ω_log/Θ_D + μ*   →  reproduction check attempted
-        ├─ 115  formula reproduces the paper's COMPUTED Tc (≤15%)   →  BENCHMARK
-        │        = L0 McMillan 7 + L1 basic 100 + L2 f1f2 8
-        │        (101 verified against a computed Tc; 14 had none to check)
-        └─  32  formula does NOT reproduce it                       →  REPRODUCTION.md §B
-   (96 unusable as closed-form cases: 11 not-in-LKM + 4 Eliashberg + 11 no-method + ~70 missing a param)
+243  WF-6 papers
+└─ 232  found in LKM                                  (11 not found)
+   → read per-paper; multi-condition papers split per condition
+341  self-consistent (λ, ω/Θ_D, μ*, Tc) data points  (deduped: one per paper × λ × freq)
+├─ 268  formula reproduces that point's COMPUTED Tc (≤15%)   →  BENCHMARK
+│        = L0 McMillan 13 + L1 basic 236 + L2 f1f2 19   (from 123 distinct papers)
+└─  65  formula does NOT reproduce it                        →  REPRODUCTION.md §B
+   (papers with no closed-form method / missing a param are not counted above)
 
 independent axis — theory vs experiment:
  86  papers report BOTH a computed and an experimental Tc
  ├─ 61  computed ≈ experiment
- └─ 25  computed ≠ experiment (>30% apart)                          →  REPRODUCTION.md §A
+ └─ 25  computed ≠ experiment (>30% apart)                    →  REPRODUCTION.md §A
 ```
 
 Benchmark cases, by the formula the paper used (dev + hidden):
 
 | Level | Formula the paper used | Benchmark cases (dev + hidden) |
 |---|---|---|
-| **L0** | McMillan (Θ_D/1.45) | 7 (5 + 2) |
-| **L1** | basic Allen-Dynes (ω_log/1.2) | 100 (67 + 33) |
-| **L2** | Allen-Dynes + f1/f2 | 8 (5 + 3) |
-| **total** | | **115 cases** |
+| **L0** | McMillan (Θ_D/1.45) | 13 (9 + 4) |
+| **L1** | basic Allen-Dynes (ω_log/1.2) | 236 (157 + 79) |
+| **L2** | Allen-Dynes + f1/f2 | 19 (13 + 6) |
+| **total** | | **268 cases** |
 
 Inputs are abstract parameters only (no material identity), so Tc cannot be recalled
 from a known compound. L2's ω̄₂ = ⟨ω²⟩^(1/2) is the paper's value where reported, else
@@ -81,15 +81,15 @@ an assigned representative second moment.
 [`REPRODUCTION.md`](REPRODUCTION.md):** *(A)* **25 papers whose computed Tc is
 reproducible but disagrees with experiment** (the closed form is inadequate — very
 strong coupling needs full Eliashberg — or pair-breaking suppresses the real Tc);
-*(B)* **32 papers whose own computed Tc we could not reproduce** with the reported
-method + μ\* (likely an approximate method label, a full-Eliashberg paper, or a
-mis-paired multi-condition value). *Failing to reproduce a reported result is itself
-a finding.*
+*(B)* **65 per-condition data points whose computed Tc we could not reproduce** with
+the reported method + μ\* (non-standard/custom-fit coefficients, a full-Eliashberg
+paper, a Debye-vs-log frequency mismatch, or a residual mis-pairing). *Failing to
+reproduce a reported result is itself a finding.*
 
 ### Per-case sources
 
-The source `paper_id` for **every** case — all 115 across L0/L1/L2, with the
-dev/hidden split and parameters — is recorded in [`SOURCES.md`](SOURCES.md). Of the
+The source `paper_id` for **every** case — all 268 across L0/L1/L2, with the
+condition label, dev/hidden split and parameters — is recorded in [`SOURCES.md`](SOURCES.md). Of the
 19 L0 cases, only **3** (`k07`, `k15`, `k16`) are papers whose *own* reported Tc is
 reproduced by McMillan; the rest report a Debye temperature but used a different
 final form — so the tuples are physically realistic while the **task** is defined by

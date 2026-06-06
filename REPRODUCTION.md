@@ -1,13 +1,12 @@
 # Reproduction audit
 
-Two distinct things a Tc paper can fail at — kept separate here (and **not** discarded).
+Two independent axes, both catalogued (not discarded).
 
-## A. Computed Tc reproducible, but it disagrees with EXPERIMENT
+## A. Computed Tc reproducible, but disagrees with EXPERIMENT
 
-The paper's closed-form/computed Tc **is** reproducible from its parameters, but the
-*computed* value differs from the *measured* Tc by >30%. This is a real physics signal —
-usually the closed form is inadequate (very strong coupling needs full Eliashberg) or
-pair-breaking (magnetism/spin-fluctuations/anharmonicity) suppresses the real Tc.
+The computed Tc is reproducible from the paper's parameters, but the *computed* value
+differs from the *measured* Tc by >30% — the closed form is inadequate (strong coupling
+needs full Eliashberg) or pair-breaking suppresses the real Tc.
 
 25 papers:
 
@@ -41,44 +40,77 @@ pair-breaking (magnetism/spin-fluctuations/anharmonicity) suppresses the real Tc
 
 ## B. Could not reproduce the paper's own COMPUTED Tc
 
-Applying the method the paper reports (with its μ\*) does **not** reproduce the paper's
-own computed Tc (>15% off). Likely: the method label is approximate, the paper actually
-solved full Eliashberg, a multi-condition value was mis-paired, or a parameter is off.
-Flagged for review, not used as benchmark gold.
+For these per-condition data points, the method the paper reports (with its μ\*) does not
+reproduce the computed Tc (>15%). Causes: non-standard prefactor / custom-fit coefficients,
+the paper actually solving full Eliashberg, a Debye-vs-log frequency mismatch, or a residual
+mis-pairing. Flagged, not used as gold.
 
-32 papers:
+65 per-condition points:
 
-| paper_id | method | λ | freq (K) | μ* | formula Tc (K) | paper computed Tc (K) | material |
+| paper_id | condition | method | λ | freq (K) | μ* | formula Tc (K) | paper computed Tc (K) |
 |---|---|---|---|---|---|---|---|
-| `867759874547646894` | allen-dynes-f1f2 | 3.39 | 3308 | 0.089 | 943.551 | 764 | Atomic metallic hydrogen (I4_1 |
-| `867756901285233340` | mcmillan | 1.5 | 1830 | 0.1 | 172.642 | 210 | high-pressure metallic hydroge |
-| `811677132345311232` | mcmillan | 1.5 | 1830 | 0.1 | 172.642 | 210 | high-pressure metallic hydroge |
-| `812698038379216897` | allen-dynes-f1f2 | 1.952 | 1188.91 | 0.1 | 203.437 | 168 | Cerium hydrides CeH9 (F-43m) a |
-| `812024758601252865` | mcmillan | 1.19 | 1826 | 0.1 | 133.897 | 162 | Molecular metallic hydrogen, C |
-| `867763386249642555` | mcmillan | 1.43 | 608 | 0.09 | 56.443 | 68 | Hole-doped Li_xBC (layered B-C |
-| `814691620430544896` | allen-dynes-basic | 0.65 | 2170 | 0.13 | 46.083 | 62.4 | BeH2 (Cmcm and P4/nmm metallic |
-| `867765509788008942` | mcmillan | 0.835 | 700 | 0.1 | 29.557 | 62 | MgB2 (sp-valent diborides; AlB |
-| `812434237373284353` | mcmillan | 0.91 | 861 | 0.15 | 31.354 | 39.4 | MgB2 |
-| `867761419615994028` | mcmillan | 0.988 | 662 | 0.13 | 32.056 | 39.3 | beryllium-based alloys (Be-Pb, |
-| `811802880196476929` | allen-dynes-basic | 0.89 | 1203 | 0.14 | 53.974 | 37 | AlH3 cubic Pm-3n phase, 70-110 |
-| `812346987746689024` | mcmillan | 0.81 | 763.5 | 0.1 | 30.365 | 36.7 | Hole-doped B13C2 (boron icosah |
-| `867765895215186065` | mcmillan | 1.12 | 676.2 | 0.2 | 27.724 | 33 | Solid C20 fullerene (NaC22; al |
-| `812127705880330240` | mcmillan | 0.94 | 226.3 | 0.13 | 9.998 | 12 | cubic perovskite Sc3InB (vs Mg |
-| `867768706984313394` | mcmillan | 0.83 | 287 | 0.14 | 9.098 | 11 | C6Ca (Ca-intercalated graphite |
-| `867772889959498403` | mcmillan | 0.57 | 922.3 | 0.14 | 8.709 | 10.95 | Li2B2 (MgB2-type layered borid |
-| `1233736905573531652` | allen-dynes-basic | 0.5 | 653.3 | 0.07 | 11.929 | 8 | 25% hole-doped infinite-layer  |
-| `812745012499447809` | allen-dynes-basic | 0.22 | 242.6 | 0.1 | 0.001 | 7.3 | Monolayer YS (tetragonal P4/nm |
-| `867748099894805062` | mcmillan | 0.57 | 453 | 0.12 | 5.688 | 7 | Li2B2 |
-| `811999699547455489` | mcmillan | 0.8 | 146.76 | 0.1 | 5.692 | 6.89 | CaAlSi (ternary silicide, AF-l |
-| `811684389233623042` | mcmillan | 0.99 | 93.5 | 0.12 | 4.795 | 5.93 | YSn3 (cubic AuCu3 structure, P |
-| `813005060060479488` | allen-dynes-basic | 1.18 | 70.5 | 0.1 | 6.181 | 5.1 | Ultrathin Ga films (1-3 ML) on |
-| `1160655936889552901` | allen-dynes-basic | 0.38 | 958.6 | 0.1 | 2.964 | 4.7 | A2PdH2 (A=Li,Na,K,Rb,Cs); supe |
-| `812318459089125376` | mcmillan | 0.43 | 1472 | 0.135 | 3.257 | 4 | Boron-doped diamond (substitut |
-| `867753789745004576` | allen-dynes-basic | 0.658 | 600 | 0.138 | 12.122 | 4 | bulk 1T-MoS2 (under pressure 0 |
-| `812652418742353921` | allen-dynes-basic | 0.43 | 942 | 0.1 | 5.83 | 3.43 | AlB2 and MgB2 (comparative fir |
-| `817398434037235713` | allen-dynes-basic | 0.67 | 86.6 | 0.1 | 2.698 | 3.3 | Bi4I4 high-pressure phases (ep |
-| `814553717972926464` | mcmillan | 0.54 | 143 | 0.1 | 1.918 | 2.4 | Mo3Sb7 (cubic intermetallic) |
-| `867747199868470067` | allen-dynes-basic | 0.37 | 280 | 0.1 | 0.73 | 1 | OsN2 (marcasite-like Pnnm), N- |
-| `813060109180600320` | allen-dynes-basic | 0.41 | 193 | 0.08 | 1.412 | 0.76 | LaPtBi (half-Heusler, cubic Mg |
-| `811908196133240832` | allen-dynes-basic | 0.41 | 280 | 0.1 | 1.349 | 0.15 | CaSi2 (phase III corrugated tr |
-| `814700620282855425` | allen-dynes-basic | 0.17 | 459.25 | 0.14 | 0.0 | 0.01 | HfB2 |
+| `867747407591375067` | YH9 P6_3/mmc-1 clathra | eliashberg | 2.9 | 790 | 0.1 | 140.013 | 250 |
+| `867747407591375067` | YH9 P6_3/mmc-1 clathra | eliashberg | 2.06 | 1255 | 0.1 | 184.144 | 234 |
+| `867747407591375067` | YH9 Pnma 210 GPa | eliashberg | 2.19 | 1153 | 0.1 | 175.94 | 233 |
+| `811677132345311232` | (single) | mcmillan | 1.5 | 1830 | 0.1 | 172.642 | 210 |
+| `867756901285233340` | (single) | mcmillan | 1.5 | 1830 | 0.1 | 172.642 | 210 |
+| `867747407591375067` | YH9 Pnma 160 GPa | eliashberg | 2.26 | 890 | 0.1 | 138.433 | 191 |
+| `812698038379216897` | CeH10 (Fm-3m) 94 GPa,  | allen-dynes-f1f2 | 1.952 | 1188.912 | 0.1 | 203.437 | 168 |
+| `811940808310652928` | Cmca H2 428 GPa | mcmillan | 1.19 | 1826 | 0.1 | 133.897 | 162 |
+| `812024758601252865` | (single) | mcmillan | 1.19 | 1826 | 0.1 | 133.897 | 162 |
+| `812698038379216897` | CeH9 (F-43m) 94 GPa, m | allen-dynes-f1f2 | 1.596 | 1181.379 | 0.1 | 164.5 | 142 |
+| `811940808310652928` | Cmca H2 388 GPa | mcmillan | 1.02 | 1818 | 0.1 | 107.975 | 130 |
+| `1102596319534383170` | Li2AgH6 harmonic DFPT, | eliashberg | 3.783 | 338 | 0.1 | 66.569 | 110.6 |
+| `811940808310652928` | Cmca H2 347 GPa | mcmillan | 0.91 | 1784 | 0.1 | 88.155 | 107 |
+| `811671572849885185` | C6 fictitious charge - | allen-dynes-basic | 1.94 | 471 | 0.1 | 66.325 | 80 |
+| `867763386249642555` | Li_xBC, x=0.125 (max h | mcmillan | 1.43 | 608 | 0.09 | 56.443 | 68 |
+| `867765895215186065` | NaC22, mu*=0.1 | mcmillan | 1.12 | 676.2 | 0.1 | 45.853 | 55 |
+| `867765509788008942` | MgB2 equilibrium volum | mcmillan | 0.835 | 700 | 0.1 | 29.557 | 39.5 |
+| `812434237373284353` | (single) | mcmillan | 0.91 | 861 | 0.15 | 31.354 | 39.4 |
+| `867767689039315155` | FCC CuN | allen-dynes-basic | 3.099 | 124.2 | 0.1 | 22.665 | 39.29 |
+| `812276374067740672` | MgB2, HGH relativistic | mcmillan | 0.87 | 540 | 0.05 | 32.061 | 39.2 |
+| `812346987746689024` | B13C2, mu*=0.10 | mcmillan | 0.81 | 763.5 | 0.1 | 30.365 | 36.7 |
+| `814553717972926464` | NaB1.1C0.9 (10% B-for- | mcmillan | 0.73 | 903 | 0.1 | 28.71 | 35 |
+| `813327028710277120` | Cmcm 100 GPa | allen-dynes-basic | 0.84 | 687.7 | 0.1 | 35.492 | 24.6 |
+| `811607029712945153` | NbN^0.5 charged model  | mcmillan | 1.943 | 145 | 0.1 | 16.917 | 20.4 |
+| `867746645356315608` | t-BC3 5 GPa | allen-dynes-basic | 0.67 | 1240.2 | 0.13 | 28.992 | 20 |
+| `813327028710277120` | Cmcm 140 GPa | allen-dynes-basic | 0.68 | 795.6 | 0.1 | 25.745 | 17.9 |
+| `867746645356315608` | t-BC3 10 GPa | allen-dynes-basic | 0.66 | 1097.8 | 0.13 | 24.483 | 17.5 |
+| `813327028710277120` | Cmcm 160 GPa | allen-dynes-basic | 0.66 | 800 | 0.1 | 23.96 | 16.7 |
+| `813327028710277120` | Cmcm 200 GPa | allen-dynes-basic | 0.68 | 720.8 | 0.1 | 23.324 | 16.2 |
+| `813327028710277120` | Cmcm 220 GPa | allen-dynes-basic | 0.76 | 552.5 | 0.1 | 23.233 | 16.1 |
+| `812030861221298177` | CaC6, 100 kbar (10 GPa | mcmillan | 1.03 | 230 | 0.145 | 11.048 | 13.5 |
+| `812030861221298177` | CaC6, 50 kbar (5 GPa) | mcmillan | 0.86 | 300 | 0.145 | 9.962 | 12 |
+| `812127705880330240` | Sc3InB stoichiometric  | mcmillan | 0.94 | 226.3 | 0.13 | 9.998 | 12 |
+| `812030861221298177` | CaC6, 0 kbar (ambient) | mcmillan | 0.84 | 305 | 0.145 | 9.58 | 11.4 |
+| `811607029712945153` | NbC (x=0, N_F=0.361) | mcmillan | 0.682 | 345 | 0.1 | 9.308 | 11.2 |
+| `867768706984313394` | (single) | mcmillan | 0.83 | 287 | 0.14 | 9.098 | 11 |
+| `867772889959498403` | Li2B2 0 GPa | mcmillan | 0.57 | 942.9 | 0.14 | 8.904 | 10.95 |
+| `812830786389540865` | amorphous Ga | allen-dynes-basic | 1.62 | 55 | 0.1 | 6.723 | 8.03 |
+| `1233736905573531652` | (single) | allen-dynes-basic | 0.5 | 653.3 | 0.07 | 11.929 | 8 |
+| `812830786389540865` | amorphous SnCu | allen-dynes-basic | 1.82 | 39.6 | 0.04 | 6.086 | 7.8 |
+| `811978101436186627` | bcc Ta (Allen-Dynes, m | mcmillan | 0.877 | 150.8 | 0.13 | 5.801 | 7.01 |
+| `867748099894805062` | (single) | mcmillan | 0.57 | 453 | 0.12 | 5.688 | 7 |
+| `812830786389540865` | amorphous PbCu | allen-dynes-basic | 2.01 | 29.1 | 0.04 | 4.75 | 6.33 |
+| `812830786389540865` | amorphous Bi | allen-dynes-basic | 2.46 | 28.3 | 0.1 | 4.62 | 6.06 |
+| `811684389233623042` | (single) | mcmillan | 0.99 | 93.5 | 0.12 | 4.795 | 5.93 |
+| `812830786389540865` | amorphous InSb | allen-dynes-basic | 1.69 | 38.6 | 0.1 | 4.891 | 5.84 |
+| `813005060060479488` | Ga 2 ML / GaN(0001), N | allen-dynes-basic | 1.18 | 70.5 | 0.1 | 6.181 | 5.1 |
+| `812127705880330240` | Sc3InB0.93 (7% B defic | mcmillan | 0.62 | 226.3 | 0.13 | 3.392 | 4 |
+| `812318459089125376` | (single) | mcmillan | 0.43 | 1472 | 0.135 | 3.257 | 4 |
+| `814655275444207618` | NaBi with SOC | allen-dynes-basic | 0.84 | 55.7 | 0.1 | 2.875 | 3.75 |
+| `814655275444207618` | NaBi without SOC | allen-dynes-basic | 0.72 | 58.8 | 0.1 | 2.188 | 2.59 |
+| `812595503937093633` | bcc Li | mcmillan | 0.51 | 180 | 0.12 | 1.434 | 1.73 |
+| `812507119646408706` | Mo3Ir (A-15) | allen-dynes-f1f2 | 0.54 | 242.7 | 0.15 | 1.854 | 1.6 |
+| `1056817631564136450` | IrO3, R-3c, 30 GPa, no | allen-dynes-basic | 0.401 | 478 | 0.1 | 2.036 | 1.4 |
+| `812745012499447809` | unstrained monolayer t | allen-dynes-basic | 0.22 | 242.6 | 0.1 | 0.001 | 1 |
+| `867747199868470067` | OsN2 pristine | allen-dynes-basic | 0.37 | 280 | 0.1 | 0.73 | 1 |
+| `813060109180600320` | (single) | allen-dynes-basic | 0.41 | 193 | 0.08 | 1.412 | 0.76 |
+| `812595503937093633` | 9R Li | mcmillan | 0.41 | 200 | 0.12 | 0.485 | 0.58 |
+| `811908196133240832` | corrugated trigonal ph | allen-dynes-basic | 0.27 | 300 | 0.1 | 0.045 | 0.15 |
+| `813282992469311488` | corrugated trigonal ph | allen-dynes-basic | 0.27 | 300 | 0.1 | 0.045 | 0.15 |
+| `867772889959498403` | Li2B2 10 GPa | mcmillan | 0.32 | 1090.2 | 0.14 | 0.091 | 0.11 |
+| `1068413857002684417` | Ba2IrH6 at 20 GPa | allen-dynes-basic | 0.27 | 1077.48 | 0.1 | 0.162 | 0.1 |
+| `867772889959498403` | Li2B2 20 GPa | mcmillan | 0.22 | 1213.5 | 0.14 | 0.0 | 0.07 |
+| `814700620282855425` | (single) | allen-dynes-basic | 0.17 | 459.25 | 0.14 | 0.0 | 0.01 |
+| `867772526099431971` | Ti2CH2 monolayer | allen-dynes-basic | 0.12895 | 530.139 | 0.1 |  | 0 |
